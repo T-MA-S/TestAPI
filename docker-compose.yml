@@ -1,0 +1,19 @@
+version: "3.10"
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: qwerty789
+      POSTGRES_USER: test_user
+      POSTGRES_DB: test_db
+
+    ports:
+      - "5432:5432"
+  web:
+    restart: always
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
